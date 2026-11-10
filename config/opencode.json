@@ -1,0 +1,84 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3-coder:30b": {
+          "name": "Qwen3 Coder 30B"
+        },
+        "qwen2.5:32b": {
+          "name": "Qwen2.5 32B"
+        },
+        "qwen2.5:14b": {
+          "name": "Qwen2.5 14B"
+        },
+        "qwen2.5:latest": {
+          "name": "Qwen2.5 7B"
+        },
+        "gemma2:27b": {
+          "name": "Gemma 2 27B"
+        },
+        "gemma4:e2b": {
+          "name": "Gemma 4 E2B"
+        },
+        "llama3.1:70b": {
+          "name": "Llama 3.1 70B"
+        },
+        "llama3.1:70b-text-q4_0": {
+          "name": "Llama 3.1 70B (Q4_0)"
+        },
+        "llama3:70b-instruct-q4_K_M": {
+          "name": "Llama 3 70B Instruct (Q4_K_M)"
+        }
+      }
+    },
+
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama-server (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:11433/v1"
+      },
+      "models": {
+        "/models/tinygemma3-Q8_0.gguf": {
+          "name": "TinyGemma3 Q8_0"
+        },
+        "/models/gemma-3-4b-it-Q4_K_M.gguf": {
+          "name": "Gemma 3 4B Instruct (Q4_K_M)"
+        },
+        "/models/Meta-Llama-3.1-70B-Instruct-Q8_0-00001-of-00002.gguf": {
+          "name": "Llama 3.1 70B Instruct (Q8_0)"
+        },
+        "/models/qwen2.5-14b-instruct-q8_0-00001-of-00004.gguf": {
+          "name": "Qwen2.5 14B Instruct (Q8_0)"
+        },
+        "/models/qwen2.5-32b-instruct-q3_k_m-00001-of-00005.gguf": {
+          "name": "Qwen2.5 32B Instruct (Q3_K_M)"
+        },
+        "/models/Qwen3-Coder-30B-A3B-Instruct-Q8_0.gguf": {
+          "name": "Qwen3 Coder 30B A3B Instruct (Q8_0)"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "searxng": {
+      "type": "local",
+      "command": ["uvx", "--with", "mcp<2", "mcp-searxng"],
+      "enabled": true,
+      "environment": {
+        "SEARXNG_URL": "http://127.0.0.1:8888"
+      }
+    }
+  },
+
+  "tools": {
+    "websearch": false
+  }
+}

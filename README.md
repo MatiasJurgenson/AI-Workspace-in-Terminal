@@ -13,34 +13,30 @@ mkdir  -p ~/llamacpp/models
 ```
 curl --fail --location --output models/tinygemma3-Q8_0.gguf https://huggingface.co/ggml-org/tinygemma3-GGUF/resolve/main/tinygemma3-Q8_0.gguf
 ```
-
-## Compose the models
+## Run a lama server for Opencode
 ```
-podman-compose up --build --force-recreate --no-cache
+llama-server   -m ~/llamacpp/models/qwen2.5-14b-instruct-q8_0-00001-of-00004.gguf   --host 127.0.0.1   --port 11433   -c 50000   -ngl 99   --jinja
 ```
 
 ## Install goose
 ```
 curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
 ```
-## Goose providers
+## Goose providers/models
 
-
-### Ollama
 ```
-export GOOSE_PROVIDER=ollama
-export OLLAMA_HOST=http://localhost:11434
-```
-### llama.cpp
-```
-export GOOSE_PROVIDER=openai
-export OPENAI_HOST=http://localhost:11433
-export OPENAI_BASE_PATH=v1/chat/completions
-export OPENAI_API_KEY=not-needed
+goose configure
 ```
 
-## install OpenCode
+Select the correct providor or change it in the config file
+
+## Opencode change models models
 ```
-curl -fsSL https://opencode.ai/v2/install | bash
+opencode
 ```
-## Copy opencode.json to ~/.config/opencode/opencode.json
+
+inside opencode
+
+```
+/models
+```

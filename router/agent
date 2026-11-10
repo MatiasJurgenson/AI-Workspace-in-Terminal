@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+prompt="${*:-}"
+
+choice=$(ollama run qwen3:4b "Classify this developer request. Reply with exactly one word: OPENCODE or GOOSE.
+
+Use OPENCODE for: code implementation, debugging, repository exploration, file edits, terminal commands.
+Use GOOSE for: broader autonomous task execution, multi-step workflows, research plus action, project automation.
+
+Request: $prompt" | tr -d '[:space:]')
+
+case "$choice" in
+  OPENCODE) exec opencode --prompt "$prompt" ;;
+  GOOSE)    exec goose run --text "$prompt" --interactive ;;
+  *)        exec opencode --prompt "$prompt" ;;
+esac
+    
